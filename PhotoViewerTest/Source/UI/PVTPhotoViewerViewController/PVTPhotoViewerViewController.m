@@ -10,9 +10,11 @@
 #import "PVTImagePresentationViewItem.h"
 #import "PVTStorageManager.h"
 #import "PVTDragInView.h"
+#import "PVTImagePresentation.h"
+
+static const float kSizeGap = 50;
 
 @interface PVTPhotoViewerViewController ()<PVTStorageManagerDelegate, PVTDragInViewDelegate>
-@property (nonatomic, assign)           float               cellRatio;
 @property (nonatomic, strong)           NSArray             *dataSource;
 @property (nonatomic, strong)           PVTStorageManager   *storageManager;
 @property (nonatomic, strong)           id                  resizeObserver;
@@ -27,7 +29,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.cellRatio = 1;
     id observation = [[NSNotificationCenter defaultCenter] addObserverForName:NSWindowDidResizeNotification
                                                                        object:nil
                                                                         queue:nil
@@ -39,6 +40,10 @@
 
     self.view.wantsLayer = YES;
     self.view.layer.backgroundColor = [NSColor blackColor].CGColor;
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self.resizeObserver];
 }
 
 #pragma mark -
@@ -78,11 +83,15 @@
 #pragma mark
 #pragma mark - NSCollectionViewDelegateFlowLayout
 
-- (NSSize)collectionView:(NSCollectionView *)collectionView layout:(NSCollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+- (NSSize)collectionView:(NSCollectionView *)collectionView
+                  layout:(NSCollectionViewLayout*)collectionViewLayout
+  sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    PVTImagePresentation *imagePresentation = self.dataSource[indexPath.item];
+    float ratio = imagePresentation.ratio;
     NSSize currentSize = collectionView.frame.size;
-    
-    CGFloat cellSide = (currentSize.height - 50);
-    NSSize cellSize = NSMakeSize(cellSide * self.cellRatio, cellSide);
+    CGFloat cellSide = (currentSize.height - kSizeGap);
+    NSSize cellSize = NSMakeSize(cellSide * ratio, cellSide);
     
     return cellSize;
 }
@@ -95,6 +104,7 @@
 {
     self.dataSource = folderContents;
     [self.collectionView reloadData];
+    [NSAnimationContext currentContext].duration = 0.5f;
     [NSAnimationContext currentContext].allowsImplicitAnimation = YES;
     NSIndexPath *lastCell = [NSIndexPath indexPathForItem:self.dataSource.count - 1 inSection:0];
     [self.collectionView.animator scrollToItemsAtIndexPaths:[NSSet setWithObject:lastCell]

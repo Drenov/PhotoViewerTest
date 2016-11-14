@@ -47,6 +47,8 @@
 		7169C5361DD9D14F0056F36E /* NSURL+PVTExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+PVTExtensions.m"; sourceTree = "<group>"; };
 		7169C5381DD9E3480056F36E /* PVTDragInView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PVTDragInView.h; path = Source/Classes/PVTDragInView/PVTDragInView.h; sourceTree = SOURCE_ROOT; };
 		7169C5391DD9E3480056F36E /* PVTDragInView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PVTDragInView.m; path = Source/Classes/PVTDragInView/PVTDragInView.m; sourceTree = SOURCE_ROOT; };
+		7169C53D1DDA304A0056F36E /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		7169C53F1DDA309F0056F36E /* AppKitScripting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKitScripting.framework; path = System/Library/Frameworks/AppKitScripting.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 				7169C4FC1DD9B3F80056F36E /* PhotoViewerTest */,
 				7169C4FB1DD9B3F80056F36E /* Products */,
 				7169C52E1DD9CA050056F36E /* Resources */,
+				7169C53C1DDA304A0056F36E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -200,6 +203,15 @@
 				7169C5391DD9E3480056F36E /* PVTDragInView.m */,
 			);
 			name = PVTDragInView;
+			sourceTree = "<group>";
+		};
+		7169C53C1DDA304A0056F36E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7169C53F1DDA309F0056F36E /* AppKitScripting.framework */,
+				7169C53D1DDA304A0056F36E /* AppKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -431,6 +443,7 @@
 				7169C5101DD9B3F80056F36E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

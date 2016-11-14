@@ -9,6 +9,7 @@
 #import "PVTStorageManager.h"
 #import "PVTImagePresentation.h"
 #import "NSURL+PVTExtensions.h"
+#import <AppKit/AppKit.h>
 
 static NSString * const     kTempFolderName     = @"TEST_TEMP_FOLDER";
 static NSString * const     kBuilInFilesType    = @"jpg";
@@ -138,11 +139,36 @@ static NSString * const     kBuilInFilesType    = @"jpg";
     [self.mutableFolderItems addObjectsFromArray:toAddItems];
     [self.mutableFolderItems removeObjectsInArray:toRemoveItems];
     
+    [self updateItemsData:toAddItems];
     [self.delegate storageManager:self didUpdateTempFolder:self.tempFolderItems];
 }
 
 #pragma mark -
 #pragma mark Private Methods
+
+- (void)updateItemsData:(NSArray<PVTImagePresentation*>*)items {
+    for (PVTImagePresentation *item in items) {
+        NSArray *imageReps = [NSBitmapImageRep imageRepsWithContentsOfURL:item.imagePath];
+        NSInteger width = 0;
+        NSInteger height = 0;
+        for (NSImageRep * imageRep in imageReps) {
+            NSInteger currentWidth = [imageRep pixelsWide];
+            NSInteger currentHeight = [imageRep pixelsHigh];
+            
+            if (currentWidth > width){
+                width = currentWidth;
+            }
+            
+            if (currentHeight > height) {
+              height = currentHeight;
+            }
+        }
+        
+        item.width = width;
+        item.height = height;
+        item.ratio = (float)width / (float)height;
+    }
+}
 
 - (NSArray<PVTImagePresentation*>*)itemsFromUrlArray:(NSArray *)array {
     NSMutableArray *updatedFolderItems = [NSMutableArray new];

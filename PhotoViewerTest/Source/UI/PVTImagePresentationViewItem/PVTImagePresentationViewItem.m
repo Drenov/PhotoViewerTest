@@ -20,9 +20,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.view.wantsLayer = YES;
-    self.view.layer.backgroundColor = [NSColor grayColor].CGColor;
 }
 
 #pragma mark -
