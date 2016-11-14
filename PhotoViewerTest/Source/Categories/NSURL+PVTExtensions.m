@@ -10,7 +10,7 @@
 
 @implementation NSURL (PVTExtensions)
 
-- (BOOL) isEqualToURL:(NSURL*)otherURL {
+- (BOOL)isEqualToURL:(NSURL*)otherURL {
     return ([[self absoluteURL] isEqual:[otherURL absoluteURL]]) ||
     ([self isFileURL] && [otherURL isFileURL] && [[self path] isEqual:[otherURL path]]);
 }

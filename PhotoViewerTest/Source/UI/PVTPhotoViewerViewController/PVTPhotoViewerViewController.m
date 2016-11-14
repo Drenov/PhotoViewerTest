@@ -36,13 +36,9 @@
     self.resizeObserver = observation;
     
     [self.storageManager configureTemporaryFolder];
-    
+
     self.view.wantsLayer = YES;
     self.view.layer.backgroundColor = [NSColor blackColor].CGColor;
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self.storageManager updateTempFolderItems];
-    });
 }
 
 #pragma mark -
@@ -70,14 +66,13 @@
      itemForRepresentedObjectAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *ident = NSStringFromClass([PVTImagePresentationViewItem class]);
-    PVTImagePresentationViewItem *item = [collectionView makeItemWithIdentifier:ident
+    PVTImagePresentationViewItem *viewItem = [collectionView makeItemWithIdentifier:ident
                                                                    forIndexPath:indexPath];
     
-//    NSImage *image = [[NSImage alloc] initByReferencingURL:self.dataSource[indexPath.item]];
-//    item.demoImageView.image = image;
-//    item.infoLabel.title = @"SDSDSDSDSD";
-    item.infoLabel.stringValue = @"SDS";
-    return item;
+    PVTImagePresentationViewItem *item = self.dataSource[indexPath.item];
+    [viewItem fillWithModel:item];
+
+    return viewItem;
 }
 
 #pragma mark
@@ -100,6 +95,11 @@
 {
     self.dataSource = folderContents;
     [self.collectionView reloadData];
+    [NSAnimationContext currentContext].allowsImplicitAnimation = YES;
+    NSIndexPath *lastCell = [NSIndexPath indexPathForItem:self.dataSource.count - 1 inSection:0];
+    [self.collectionView.animator scrollToItemsAtIndexPaths:[NSSet setWithObject:lastCell]
+                                             scrollPosition:NSCollectionViewScrollPositionLeadingEdge];
+    [NSAnimationContext currentContext].allowsImplicitAnimation = NO;
 }
 
 #pragma mark -

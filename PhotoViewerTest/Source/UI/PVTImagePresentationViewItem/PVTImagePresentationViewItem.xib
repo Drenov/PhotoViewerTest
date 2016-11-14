@@ -24,7 +24,7 @@
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="cz3-Az-eob"/>
                 </imageView>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="47I-PU-pFC">
-                    <rect key="frame" x="87" y="20" width="27" height="17"/>
+                    <rect key="frame" x="87" y="8" width="27" height="17"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Info" id="RSt-O5-LGn">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -33,7 +33,7 @@
                 </textField>
             </subviews>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="47I-PU-pFC" secondAttribute="bottom" constant="20" id="5jw-a1-9Xv"/>
+                <constraint firstAttribute="bottom" secondItem="47I-PU-pFC" secondAttribute="bottom" constant="8" id="5jw-a1-9Xv"/>
                 <constraint firstAttribute="bottom" secondItem="My4-oa-nbp" secondAttribute="bottom" id="8Gb-4b-V7W"/>
                 <constraint firstItem="47I-PU-pFC" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" id="VmJ-Fd-rhv"/>
                 <constraint firstItem="My4-oa-nbp" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="Xml-Fp-J93"/>

@@ -29,7 +29,10 @@
 #pragma mark Public methods
 
 - (void)fillWithModel:(PVTImagePresentation *)model {
-    
+    NSImage *image = [[NSImage alloc] initByReferencingURL:model.imagePath];
+    self.presentationImageView.image = image;
+
+    self.infoLabel.stringValue = model.imagePath.lastPathComponent;
 }
 
 @end

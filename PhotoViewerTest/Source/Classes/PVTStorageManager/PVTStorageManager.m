@@ -74,7 +74,10 @@ static NSString * const     kBuilInFilesType    = @"jpg";
 }
 
 - (NSArray<PVTImagePresentation*>*)tempFolderItems {
-    return [NSArray arrayWithArray:self.mutableFolderItems];
+    NSSortDescriptor *dateDescriptor = [NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(addedDate))
+                                                                     ascending:YES];
+    
+    return [self.mutableFolderItems sortedArrayUsingDescriptors:@[dateDescriptor]];
 }
 
 #pragma mark -
@@ -114,6 +117,10 @@ static NSString * const     kBuilInFilesType    = @"jpg";
     NSArray *updatedFolderItems = [self itemsFromUrlArray:self.tempFolderContents];
     NSArray *curentFolderItems = self.tempFolderItems;
     
+    if ([updatedFolderItems isEqual:curentFolderItems]) {
+        return;
+    }
+        
     NSMutableArray *toAddItems = [NSMutableArray new];
     for (PVTImagePresentation *item in updatedFolderItems) {
         if (![curentFolderItems containsObject:item]) {

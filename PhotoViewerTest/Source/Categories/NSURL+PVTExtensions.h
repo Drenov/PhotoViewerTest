@@ -10,6 +10,6 @@
 
 @interface NSURL (PVTExtensions)
 
-- (BOOL) isEqualToURL:(NSURL*)otherURL;
+- (BOOL)isEqualToURL:(NSURL*)otherURL;
 
 @end

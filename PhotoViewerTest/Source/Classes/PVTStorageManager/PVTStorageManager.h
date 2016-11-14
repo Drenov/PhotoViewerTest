@@ -26,7 +26,7 @@
 @property (nonatomic, weak)     id<PVTStorageManagerDelegate>         delegate;
 
 /*!
- Method intended to add bult in images to temp folder
+ Method intended to add bult in images to temp folder. Calls delegate 'storageManager:didUpdateTempFolder:' callback
  */
 - (void)configureTemporaryFolder;
 
