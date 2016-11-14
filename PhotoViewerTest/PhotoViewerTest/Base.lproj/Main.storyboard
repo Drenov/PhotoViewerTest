@@ -681,7 +681,7 @@
             </objects>
             <point key="canvasLocation" x="75" y="250"/>
         </scene>
-        <!--Photo Viewer View Controller-->
+        <!--Delegate-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="PVTPhotoViewerViewController" sceneMemberID="viewController">
@@ -719,11 +719,21 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="KIj-SB-tut" customClass="PVTDragInView">
+                                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                                <connections>
+                                    <outlet property="delegate" destination="XfG-lQ-9wD" id="A5s-Xs-nHo"/>
+                                </connections>
+                            </customView>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="KIj-SB-tut" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="2nS-gY-Kkt"/>
+                            <constraint firstAttribute="trailing" secondItem="KIj-SB-tut" secondAttribute="trailing" id="6Dz-lX-nkZ"/>
                             <constraint firstItem="lDO-pV-uCF" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" id="b6x-5N-RTY"/>
                             <constraint firstAttribute="trailing" secondItem="lDO-pV-uCF" secondAttribute="trailing" id="hWI-XR-wVX"/>
+                            <constraint firstAttribute="bottom" secondItem="KIj-SB-tut" secondAttribute="bottom" id="iIl-er-Bm4"/>
                             <constraint firstItem="lDO-pV-uCF" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="nbQ-GW-78Z"/>
+                            <constraint firstItem="KIj-SB-tut" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="um0-Ls-2U2"/>
                             <constraint firstItem="lDO-pV-uCF" firstAttribute="height" secondItem="m2S-Jp-Qdl" secondAttribute="height" multiplier="0.9" id="wDQ-Yg-VLy"/>
                         </constraints>
                     </view>

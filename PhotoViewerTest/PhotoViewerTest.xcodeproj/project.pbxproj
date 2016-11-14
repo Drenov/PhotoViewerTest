@@ -15,6 +15,12 @@
 		7169C5201DD9B7ED0056F36E /* PVTImagePresentationViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7169C51E1DD9B7ED0056F36E /* PVTImagePresentationViewItem.m */; };
 		7169C5211DD9B7ED0056F36E /* PVTImagePresentationViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7169C51F1DD9B7ED0056F36E /* PVTImagePresentationViewItem.xib */; };
 		7169C5251DD9B8A50056F36E /* PVTImagePresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7169C5241DD9B8A50056F36E /* PVTImagePresentation.m */; };
+		7169C52D1DD9BCAD0056F36E /* PVTStorageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7169C52C1DD9BCAD0056F36E /* PVTStorageManager.m */; };
+		7169C5321DD9CA050056F36E /* test1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7169C52F1DD9CA050056F36E /* test1.jpg */; };
+		7169C5331DD9CA050056F36E /* test2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7169C5301DD9CA050056F36E /* test2.jpg */; };
+		7169C5341DD9CA050056F36E /* test3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7169C5311DD9CA050056F36E /* test3.jpg */; };
+		7169C5371DD9D14F0056F36E /* NSURL+PVTExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7169C5361DD9D14F0056F36E /* NSURL+PVTExtensions.m */; };
+		7169C53A1DD9E3480056F36E /* PVTDragInView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7169C5391DD9E3480056F36E /* PVTDragInView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +38,15 @@
 		7169C51F1DD9B7ED0056F36E /* PVTImagePresentationViewItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PVTImagePresentationViewItem.xib; path = Source/UI/PVTImagePresentationViewItem/PVTImagePresentationViewItem.xib; sourceTree = "<group>"; };
 		7169C5231DD9B8A50056F36E /* PVTImagePresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PVTImagePresentation.h; path = PVTImagePresentation/PVTImagePresentation.h; sourceTree = "<group>"; };
 		7169C5241DD9B8A50056F36E /* PVTImagePresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PVTImagePresentation.m; path = PVTImagePresentation/PVTImagePresentation.m; sourceTree = "<group>"; };
+		7169C52B1DD9BCAD0056F36E /* PVTStorageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PVTStorageManager.h; sourceTree = "<group>"; };
+		7169C52C1DD9BCAD0056F36E /* PVTStorageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PVTStorageManager.m; sourceTree = "<group>"; };
+		7169C52F1DD9CA050056F36E /* test1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test1.jpg; sourceTree = "<group>"; };
+		7169C5301DD9CA050056F36E /* test2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test2.jpg; sourceTree = "<group>"; };
+		7169C5311DD9CA050056F36E /* test3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test3.jpg; sourceTree = "<group>"; };
+		7169C5351DD9D14F0056F36E /* NSURL+PVTExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+PVTExtensions.h"; sourceTree = "<group>"; };
+		7169C5361DD9D14F0056F36E /* NSURL+PVTExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+PVTExtensions.m"; sourceTree = "<group>"; };
+		7169C5381DD9E3480056F36E /* PVTDragInView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PVTDragInView.h; path = Source/Classes/PVTDragInView/PVTDragInView.h; sourceTree = SOURCE_ROOT; };
+		7169C5391DD9E3480056F36E /* PVTDragInView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PVTDragInView.m; path = Source/Classes/PVTDragInView/PVTDragInView.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +66,7 @@
 				7169C5141DD9B4F90056F36E /* Source */,
 				7169C4FC1DD9B3F80056F36E /* PhotoViewerTest */,
 				7169C4FB1DD9B3F80056F36E /* Products */,
+				7169C52E1DD9CA050056F36E /* Resources */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,6 +113,8 @@
 		7169C5151DD9B4F90056F36E /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				7169C5351DD9D14F0056F36E /* NSURL+PVTExtensions.h */,
+				7169C5361DD9D14F0056F36E /* NSURL+PVTExtensions.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -104,6 +122,8 @@
 		7169C5161DD9B4F90056F36E /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				7169C53B1DD9E3500056F36E /* PVTDragInView */,
+				7169C52A1DD9BCAD0056F36E /* PVTStorageManager */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -152,6 +172,34 @@
 				7169C5241DD9B8A50056F36E /* PVTImagePresentation.m */,
 			);
 			name = PVTImagePresentation;
+			sourceTree = "<group>";
+		};
+		7169C52A1DD9BCAD0056F36E /* PVTStorageManager */ = {
+			isa = PBXGroup;
+			children = (
+				7169C52B1DD9BCAD0056F36E /* PVTStorageManager.h */,
+				7169C52C1DD9BCAD0056F36E /* PVTStorageManager.m */,
+			);
+			path = PVTStorageManager;
+			sourceTree = "<group>";
+		};
+		7169C52E1DD9CA050056F36E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7169C52F1DD9CA050056F36E /* test1.jpg */,
+				7169C5301DD9CA050056F36E /* test2.jpg */,
+				7169C5311DD9CA050056F36E /* test3.jpg */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		7169C53B1DD9E3500056F36E /* PVTDragInView */ = {
+			isa = PBXGroup;
+			children = (
+				7169C5381DD9E3480056F36E /* PVTDragInView.h */,
+				7169C5391DD9E3480056F36E /* PVTDragInView.m */,
+			);
+			name = PVTDragInView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -213,8 +261,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				7169C5071DD9B3F80056F36E /* Assets.xcassets in Resources */,
+				7169C5331DD9CA050056F36E /* test2.jpg in Resources */,
+				7169C5321DD9CA050056F36E /* test1.jpg in Resources */,
 				7169C5211DD9B7ED0056F36E /* PVTImagePresentationViewItem.xib in Resources */,
 				7169C50A1DD9B3F80056F36E /* Main.storyboard in Resources */,
+				7169C5341DD9CA050056F36E /* test3.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,10 +277,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				7169C5201DD9B7ED0056F36E /* PVTImagePresentationViewItem.m in Sources */,
+				7169C52D1DD9BCAD0056F36E /* PVTStorageManager.m in Sources */,
 				7169C51C1DD9B4F90056F36E /* PVTPhotoViewerViewController.m in Sources */,
 				7169C5021DD9B3F80056F36E /* main.m in Sources */,
+				7169C53A1DD9E3480056F36E /* PVTDragInView.m in Sources */,
 				7169C5251DD9B8A50056F36E /* PVTImagePresentation.m in Sources */,
 				7169C4FF1DD9B3F80056F36E /* AppDelegate.m in Sources */,
+				7169C5371DD9D14F0056F36E /* NSURL+PVTExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
