@@ -9,5 +9,6 @@
 #import <Cocoa/Cocoa.h>
 
 @interface PVTPhotoViewerViewController : NSViewController
+@property (nonatomic, weak)     IBOutlet        NSCollectionView        *collectionView;
 
 @end
