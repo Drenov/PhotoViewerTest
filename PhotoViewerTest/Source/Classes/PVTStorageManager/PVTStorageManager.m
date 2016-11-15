@@ -10,12 +10,14 @@
 #import "PVTImagePresentation.h"
 #import "NSURL+PVTExtensions.h"
 #import <AppKit/AppKit.h>
+#import "PVTThumbsManager.h"
 
 static NSString * const     kTempFolderName     = @"TEST_TEMP_FOLDER";
 static NSString * const     kBuilInFilesType    = @"jpg";
 
 @interface PVTStorageManager ()
 @property (nonatomic, strong)   NSMutableArray<PVTImagePresentation*>      *mutableFolderItems;
+@property (nonatomic, strong)   PVTThumbsManager                            *thumbsManager ;
 
 @end
 
@@ -28,6 +30,7 @@ static NSString * const     kBuilInFilesType    = @"jpg";
     self = [super init];
     if (self) {
         self.mutableFolderItems = [NSMutableArray new];
+        self.thumbsManager = [PVTThumbsManager new];
     }
     
     return self;
@@ -167,6 +170,7 @@ static NSString * const     kBuilInFilesType    = @"jpg";
         item.width = width;
         item.height = height;
         item.ratio = (float)width / (float)height;
+        item.thumbnailImage = [self.thumbsManager thumbnailImageForPresentation:item];
     }
 }
 

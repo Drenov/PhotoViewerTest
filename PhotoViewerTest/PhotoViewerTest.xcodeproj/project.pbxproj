@@ -21,6 +21,7 @@
 		7169C5341DD9CA050056F36E /* test3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7169C5311DD9CA050056F36E /* test3.jpg */; };
 		7169C5371DD9D14F0056F36E /* NSURL+PVTExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7169C5361DD9D14F0056F36E /* NSURL+PVTExtensions.m */; };
 		7169C53A1DD9E3480056F36E /* PVTDragInView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7169C5391DD9E3480056F36E /* PVTDragInView.m */; };
+		71E638211DDB7E6B0061764B /* PVTThumbsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 71E638201DDB7E6B0061764B /* PVTThumbsManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,8 @@
 		7169C5391DD9E3480056F36E /* PVTDragInView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PVTDragInView.m; path = Source/Classes/PVTDragInView/PVTDragInView.m; sourceTree = SOURCE_ROOT; };
 		7169C53D1DDA304A0056F36E /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		7169C53F1DDA309F0056F36E /* AppKitScripting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKitScripting.framework; path = System/Library/Frameworks/AppKitScripting.framework; sourceTree = SDKROOT; };
+		71E6381F1DDB7E6B0061764B /* PVTThumbsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PVTThumbsManager.h; path = PVTThumbsManager/PVTThumbsManager.h; sourceTree = "<group>"; };
+		71E638201DDB7E6B0061764B /* PVTThumbsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PVTThumbsManager.m; path = PVTThumbsManager/PVTThumbsManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +130,7 @@
 			children = (
 				7169C53B1DD9E3500056F36E /* PVTDragInView */,
 				7169C52A1DD9BCAD0056F36E /* PVTStorageManager */,
+				71E638221DDB7E6E0061764B /* PVTThumbsManager */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -214,6 +218,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		71E638221DDB7E6E0061764B /* PVTThumbsManager */ = {
+			isa = PBXGroup;
+			children = (
+				71E6381F1DDB7E6B0061764B /* PVTThumbsManager.h */,
+				71E638201DDB7E6B0061764B /* PVTThumbsManager.m */,
+			);
+			name = PVTThumbsManager;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -291,6 +304,7 @@
 				7169C5201DD9B7ED0056F36E /* PVTImagePresentationViewItem.m in Sources */,
 				7169C52D1DD9BCAD0056F36E /* PVTStorageManager.m in Sources */,
 				7169C51C1DD9B4F90056F36E /* PVTPhotoViewerViewController.m in Sources */,
+				71E638211DDB7E6B0061764B /* PVTThumbsManager.m in Sources */,
 				7169C5021DD9B3F80056F36E /* main.m in Sources */,
 				7169C53A1DD9E3480056F36E /* PVTDragInView.m in Sources */,
 				7169C5251DD9B8A50056F36E /* PVTImagePresentation.m in Sources */,

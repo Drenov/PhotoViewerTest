@@ -39,4 +39,5 @@
     
     return [self isEqualToPresentation:object];
 }
+
 @end

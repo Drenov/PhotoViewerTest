@@ -26,9 +26,7 @@
 #pragma mark Public methods
 
 - (void)fillWithModel:(PVTImagePresentation *)model {
-    NSImage *image = [[NSImage alloc] initByReferencingURL:model.imagePath];
-    self.presentationImageView.image = image;
-
+    self.presentationImageView.image = model.thumbnailImage;
     self.infoLabel.stringValue = model.imagePath.lastPathComponent;
 }
 

@@ -10,9 +10,10 @@
 
 @interface PVTImagePresentation : NSObject
 @property (nonatomic, copy)         NSURL           *imagePath;
-@property (nonatomic, copy)         NSDate          *addedDate;
+@property (nonatomic, strong)       NSDate          *addedDate;
 @property (nonatomic, assign)       NSInteger       width;
 @property (nonatomic, assign)       NSInteger       height;
 @property (nonatomic, assign)       float           ratio;
+@property (nonatomic, strong)       NSImage         *thumbnailImage;
 
 @end
