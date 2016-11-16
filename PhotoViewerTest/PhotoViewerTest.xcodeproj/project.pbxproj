@@ -22,6 +22,8 @@
 		7169C5371DD9D14F0056F36E /* NSURL+PVTExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7169C5361DD9D14F0056F36E /* NSURL+PVTExtensions.m */; };
 		7169C53A1DD9E3480056F36E /* PVTDragInView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7169C5391DD9E3480056F36E /* PVTDragInView.m */; };
 		71E638211DDB7E6B0061764B /* PVTThumbsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 71E638201DDB7E6B0061764B /* PVTThumbsManager.m */; };
+		71E638251DDC4B6C0061764B /* PVTStorageManager+InitialContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 71E638241DDC4B6C0061764B /* PVTStorageManager+InitialContent.m */; };
+		71E6382A1DDC5B010061764B /* PVTDispatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 71E638291DDC5B010061764B /* PVTDispatch.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +54,10 @@
 		7169C53F1DDA309F0056F36E /* AppKitScripting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKitScripting.framework; path = System/Library/Frameworks/AppKitScripting.framework; sourceTree = SDKROOT; };
 		71E6381F1DDB7E6B0061764B /* PVTThumbsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PVTThumbsManager.h; path = PVTThumbsManager/PVTThumbsManager.h; sourceTree = "<group>"; };
 		71E638201DDB7E6B0061764B /* PVTThumbsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PVTThumbsManager.m; path = PVTThumbsManager/PVTThumbsManager.m; sourceTree = "<group>"; };
+		71E638231DDC4B6C0061764B /* PVTStorageManager+InitialContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PVTStorageManager+InitialContent.h"; sourceTree = "<group>"; };
+		71E638241DDC4B6C0061764B /* PVTStorageManager+InitialContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PVTStorageManager+InitialContent.m"; sourceTree = "<group>"; };
+		71E638271DDC5AE10061764B /* PVTDispatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PVTDispatch.h; sourceTree = "<group>"; };
+		71E638291DDC5B010061764B /* PVTDispatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PVTDispatch.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +127,10 @@
 			children = (
 				7169C5351DD9D14F0056F36E /* NSURL+PVTExtensions.h */,
 				7169C5361DD9D14F0056F36E /* NSURL+PVTExtensions.m */,
+				71E638231DDC4B6C0061764B /* PVTStorageManager+InitialContent.h */,
+				71E638241DDC4B6C0061764B /* PVTStorageManager+InitialContent.m */,
+				71E638271DDC5AE10061764B /* PVTDispatch.h */,
+				71E638291DDC5B010061764B /* PVTDispatch.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -306,9 +316,11 @@
 				7169C51C1DD9B4F90056F36E /* PVTPhotoViewerViewController.m in Sources */,
 				71E638211DDB7E6B0061764B /* PVTThumbsManager.m in Sources */,
 				7169C5021DD9B3F80056F36E /* main.m in Sources */,
+				71E638251DDC4B6C0061764B /* PVTStorageManager+InitialContent.m in Sources */,
 				7169C53A1DD9E3480056F36E /* PVTDragInView.m in Sources */,
 				7169C5251DD9B8A50056F36E /* PVTImagePresentation.m in Sources */,
 				7169C4FF1DD9B3F80056F36E /* AppDelegate.m in Sources */,
+				71E6382A1DDC5B010061764B /* PVTDispatch.m in Sources */,
 				7169C5371DD9D14F0056F36E /* NSURL+PVTExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

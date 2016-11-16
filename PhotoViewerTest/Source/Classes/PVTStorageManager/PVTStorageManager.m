@@ -9,14 +9,11 @@
 #import "PVTStorageManager.h"
 #import "PVTImagePresentation.h"
 #import "NSURL+PVTExtensions.h"
-#import <AppKit/AppKit.h>
 #import "PVTThumbsManager.h"
-
-static NSString * const     kTempFolderName     = @"TEST_TEMP_FOLDER";
-static NSString * const     kBuilInFilesType    = @"jpg";
+#import "PVTDispatch.h"
 
 @interface PVTStorageManager ()
-@property (nonatomic, strong)   NSMutableArray<PVTImagePresentation*>      *mutableFolderItems;
+@property (nonatomic, strong)   NSMutableArray<PVTImagePresentation*>       *mutableLibraryItems;
 @property (nonatomic, strong)   PVTThumbsManager                            *thumbsManager ;
 
 @end
@@ -29,7 +26,7 @@ static NSString * const     kBuilInFilesType    = @"jpg";
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.mutableFolderItems = [NSMutableArray new];
+        self.mutableLibraryItems = [NSMutableArray new];
         self.thumbsManager = [PVTThumbsManager new];
     }
     
@@ -39,111 +36,37 @@ static NSString * const     kBuilInFilesType    = @"jpg";
 #pragma mark -
 #pragma mark Accessors
 
-- (NSString *)tempPath {
-    NSArray * paths = NSSearchPathForDirectoriesInDomains (NSDesktopDirectory, NSUserDomainMask, YES);
-    NSString * desktopPath = [paths objectAtIndex:0];
-    desktopPath = [desktopPath stringByAppendingPathComponent:kTempFolderName];
-    NSError *error = nil;
-    BOOL isFolder = YES;
-    NSFileManager *manager = [NSFileManager defaultManager];
-    if (![manager fileExistsAtPath:desktopPath isDirectory:&isFolder] && isFolder) {
-        [manager createDirectoryAtPath:desktopPath
-           withIntermediateDirectories:YES
-                            attributes:nil
-                                 error:&error];
-    }
-    
-    return error ? nil : desktopPath;
-}
-
-- (NSArray<NSURL*>*)tempFolderContents {
-    NSFileManager *manager = [NSFileManager defaultManager];
-    NSError *error = nil;
-    
-    NSArray *directoryContent = [manager contentsOfDirectoryAtPath:self.tempPath error:&error];
-    NSURL *tempPathUrl = [NSURL fileURLWithPath:self.tempPath];
-    NSMutableArray *result = [NSMutableArray new];
-    
-    
-    for (NSString *path in directoryContent) {
-        CFStringRef fileExtension = (__bridge CFStringRef) [path pathExtension];
-        CFStringRef fileUTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, fileExtension, NULL);
-        if (UTTypeConformsTo(fileUTI, kUTTypeImage)) {
-            NSURL *resulrUrl = [tempPathUrl URLByAppendingPathComponent:path];
-            [result addObject:resulrUrl];
-        }
-    }
-    
-    return result;
-}
-
-- (NSArray<PVTImagePresentation*>*)tempFolderItems {
+- (NSArray<PVTImagePresentation *> *)libraryItems {
     NSSortDescriptor *dateDescriptor = [NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(addedDate))
-                                                                     ascending:YES];
+                                                                         ascending:YES];
     
-    return [self.mutableFolderItems sortedArrayUsingDescriptors:@[dateDescriptor]];
+    return [self.mutableLibraryItems sortedArrayUsingDescriptors:@[dateDescriptor]];
 }
 
 #pragma mark -
 #pragma mark Public methods
 
-- (void)configureTemporaryFolder {
-    NSArray *testImages = [[NSBundle mainBundle] pathsForResourcesOfType:kBuilInFilesType
-                                                             inDirectory:nil];
-    
-    NSMutableArray *testImagesUrls = [NSMutableArray new];
-    [testImages enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL *stop) {
-        [testImagesUrls addObject:[NSURL fileURLWithPath:obj]];
-    }];
-    
-    [self copyToTemporaryFolderItemAtPathes:testImagesUrls];
-    NSLog(@"Temp folder ready");
-}
+- (void)addToLibraryImagesAtPathes:(NSArray<NSURL*>*)pathes {
+    NSArray *comingItems = [self itemsFromUrlArray:pathes];
+    NSArray *curentItems = self.libraryItems;
 
-- (void)copyToTemporaryFolderItemAtPathes:(NSArray<NSURL*>*)pathes {
-    NSFileManager *manager = [NSFileManager defaultManager];
-    NSURL *tempPathUrl = [NSURL fileURLWithPath:self.tempPath];
-    for (NSURL *path in pathes) {
-        NSError *error = nil;
-        NSURL *destination = [tempPathUrl URLByAppendingPathComponent:path.filePathURL.lastPathComponent];
-        
-        if (![manager fileExistsAtPath:[destination path]]) {
-            [manager copyItemAtURL:path
-                             toURL:destination
-                             error:&error];
-        }
-    }
-    
-    [self updateTempFolderItems];
-}
-
-- (void)updateTempFolderItems {
-    NSArray *updatedFolderItems = [self itemsFromUrlArray:self.tempFolderContents];
-    NSArray *curentFolderItems = self.tempFolderItems;
-    
-    if ([updatedFolderItems isEqual:curentFolderItems]) {
-        return;
-    }
-        
     NSMutableArray *toAddItems = [NSMutableArray new];
-    for (PVTImagePresentation *item in updatedFolderItems) {
-        if (![curentFolderItems containsObject:item]) {
+    for (PVTImagePresentation *item in comingItems) {
+        if (![curentItems containsObject:item]) {
             [toAddItems addObject:item];
         }
     }
-    
-    NSMutableArray *toRemoveItems = [NSMutableArray new];
-    for (PVTImagePresentation *item in curentFolderItems) {
-        if (![updatedFolderItems containsObject:item]) {
-            [toRemoveItems addObject:item];
-        }
+
+    if (toAddItems.count) {
+        PVTDispatchAsyncOnDefaultQueueWithBlock(^{
+            [self updateItemsData:toAddItems];
+            [self.mutableLibraryItems addObjectsFromArray:toAddItems];
+            PVTDispatchAsyncOnMainQueueWithBlock(^{
+                [self.delegate storageManager:self didUpdateLibraryContent:self.libraryItems];
+                
+            });
+        });
     }
-    
-    [self.mutableFolderItems addObjectsFromArray:toAddItems];
-    [self.mutableFolderItems removeObjectsInArray:toRemoveItems];
-    
-    [self updateItemsData:toAddItems];
-    [self.delegate storageManager:self didUpdateTempFolder:self.tempFolderItems];
 }
 
 #pragma mark -

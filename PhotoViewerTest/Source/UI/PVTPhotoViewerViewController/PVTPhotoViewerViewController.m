@@ -11,8 +11,9 @@
 #import "PVTStorageManager.h"
 #import "PVTDragInView.h"
 #import "PVTImagePresentation.h"
+#import "PVTStorageManager+InitialContent.h"
 
-static const float kSizeGap = 50;
+static const float kSizeGap = 50.f;
 
 @interface PVTPhotoViewerViewController ()<PVTStorageManagerDelegate, PVTDragInViewDelegate>
 @property (nonatomic, strong)           NSArray             *dataSource;
@@ -99,10 +100,10 @@ static const float kSizeGap = 50;
 #pragma mark -
 #pragma mark PVTStorageManagerDelegate
 
-- (void)storageManager:(PVTStorageManager *)manager
-   didUpdateTempFolder:(NSArray<PVTImagePresentation*>*)folderContents
+- (void)    storageManager:(PVTStorageManager *)manager
+   didUpdateLibraryContent:(NSArray<PVTImagePresentation *> *)content
 {
-    self.dataSource = folderContents;
+    self.dataSource = content;
     [self.collectionView reloadData];
     [NSAnimationContext currentContext].duration = 0.5f;
     [NSAnimationContext currentContext].allowsImplicitAnimation = YES;
@@ -116,8 +117,7 @@ static const float kSizeGap = 50;
 #pragma mark PVTDragInViewDelegate
 
 - (void)dragInViewDidReceiveImagePathes:(NSArray *)pathes {
-    [self.storageManager copyToTemporaryFolderItemAtPathes:pathes];
-    [self.storageManager updateTempFolderItems];
+    [self.storageManager addToLibraryImagesAtPathes:pathes];
 }
 
 @end

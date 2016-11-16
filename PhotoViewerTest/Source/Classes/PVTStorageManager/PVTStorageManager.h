@@ -13,31 +13,29 @@
 
 @protocol PVTStorageManagerDelegate <NSObject>
 
-- (void)storageManager:(PVTStorageManager *)manager
-   didUpdateTempFolder:(NSArray<PVTImagePresentation*>*)folderContents;
+/*!
+ Intended to notify of libriary content update. Called on main thread
+ */
+- (void)    storageManager:(PVTStorageManager *)manager
+   didUpdateLibraryContent:(NSArray<PVTImagePresentation*>*)content;
 
 @end
 
-@interface PVTStorageManager : NSObject
-@property (nonatomic, readonly)     NSString                        *tempPath;
-@property (nonatomic, readonly)     NSArray<NSURL*>                 *tempFolderContents;
-@property (nonatomic, readonly)     NSArray<PVTImagePresentation*>  *tempFolderItems;
+@protocol PVTContentStorageProtocol <NSObject>
 
+/*!
+ Intended to add items at provided pathes to library. Calls delegate 'storageManager:didUpdateLibraryContent:' callback
+ */
+- (void)addToLibraryImagesAtPathes:(NSArray<NSURL*>*)pathes;
+
+/*!
+ Current library items representation
+ */
+- (NSArray<PVTImagePresentation*>*)libraryItems;
+
+@end
+
+@interface PVTStorageManager : NSObject<PVTContentStorageProtocol>
 @property (nonatomic, weak)     id<PVTStorageManagerDelegate>         delegate;
-
-/*!
- Method intended to add bult in images to temp folder. Calls delegate 'storageManager:didUpdateTempFolder:' callback
- */
-- (void)configureTemporaryFolder;
-
-/*!
- Intended to copy items at provided pathes. Calls delegate 'storageManager:didUpdateTempFolder:' callback
- */
-- (void)copyToTemporaryFolderItemAtPathes:(NSArray<NSURL*>*)pathes;
-
-/*!
- Intended to update 'tempFolderItems' to actual folder state. Calls delegate 'storageManager:didUpdateTempFolder:' callback
- */
-- (void)updateTempFolderItems;
 
 @end
